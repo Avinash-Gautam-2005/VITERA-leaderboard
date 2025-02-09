@@ -14,15 +14,25 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="logo.png" alt="Logo">
-            <h1 class="navbar-title">Final Leaderboard</h1>
+            <img src="Screenshot 2025-02-09 231833.png" alt="Logo">
+        </div>
+    
+        <div class="nav-heading">
+            <h1 class="navbar-title" style="color: rgb(48, 45, 45); font-size: 2rem;   font-weight:800;">Final Leaderboard</h1>   
+        </div>
+    
+        
+        <div class="navbar-end-logos">
+            <img src="AdVITya '25 Logo (Black).png" alt="AdVITya Logo">
+            <img src="VIT Bhopal University Logo Blue (1).png" alt="VIT Bhopal Logo">
         </div>
     </nav>
+
 
     <h2>Multi-Round Leaderboard</h2>
 
     <div class="container">
-        <!-- Styled Upload Button -->
+        
         <label for="upload" class="upload-label">Choose File</label>
         <input type="file" id="upload" accept=".xlsx" />
 
@@ -79,7 +89,7 @@
             reader.readAsArrayBuffer(file);
         });
 
-        // Responsive Navbar Toggle
+        // Responsive Navbar 
         document.querySelector(".menu-toggle")?.addEventListener("click", function() {
             document.querySelector(".nav-links").classList.toggle("active");
         });
