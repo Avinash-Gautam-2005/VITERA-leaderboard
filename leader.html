@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Round Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="Screenshot 2025-02-09 231833.png" alt="Logo">
+        </div>
+    
+        <div class="nav-heading">
+            <h1 class="navbar-title" style="color: rgb(48, 45, 45); font-size: 2rem;   font-weight:800;">Final Leaderboard</h1>   
+        </div>
+    
+        
+        <div class="navbar-end-logos">
+            <img src="AdVITya '25 Logo (Black).png" alt="AdVITya Logo">
+            <img src="VIT Bhopal University Logo Blue (1).png" alt="VIT Bhopal Logo">
+        </div>
+    </nav>
+
+
+    <h2>Multi-Round Leaderboard</h2>
+
+    <div class="container">
+        
+        <label for="upload" class="upload-label">Choose File</label>
+        <input type="file" id="upload" accept=".xlsx" />
+
+        <table class="leaderboard" id="leaderboard">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Round 1</th>
+                    <th>Round 2</th>
+                    <th>Round 3</th>
+                    <th>Total Score</th>
+                    <th>Rank</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script>
+        document.getElementById('upload').addEventListener('change', function(event) {
+            let file = event.target.files[0];
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+                let data = new Uint8Array(e.target.result);
+                let workbook = XLSX.read(data, { type: 'array' });
+                let sheetName = workbook.SheetNames[0];
+                let sheet = workbook.Sheets[sheetName];
+                let jsonData = XLSX.utils.sheet_to_json(sheet);
+
+                let teamScores = {};
+                jsonData.forEach(row => {
+                    let team = row.Team;
+                    if (!teamScores[team]) {
+                        teamScores[team] = { round1: 0, round2: 0, round3: 0, total: 0 };
+                    }
+                    teamScores[team].round1 = row["Round 1"] || 0;
+                    teamScores[team].round2 = row["Round 2"] || 0;
+                    teamScores[team].round3 = row["Round 3"] || 0;
+                    teamScores[team].total = teamScores[team].round1 + teamScores[team].round2 + teamScores[team].round3;
+                });
+
+                let sortedTeams = Object.entries(teamScores).sort((a, b) => b[1].total - a[1].total);
+                let tableBody = document.querySelector("#leaderboard tbody");
+                tableBody.innerHTML = "";
+
+                sortedTeams.forEach(([team, scores], index) => {
+                    let tr = document.createElement("tr");
+                    tr.innerHTML = `<td>${team}</td><td>${scores.round1}</td><td>${scores.round2}</td><td>${scores.round3}</td><td>${scores.total}</td><td>${index + 1}</td>`;
+                    tableBody.appendChild(tr);
+                });
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+
+        // Responsive Navbar 
+        document.querySelector(".menu-toggle")?.addEventListener("click", function() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        });
+    </script>
+
+</body>
+
+</html>
