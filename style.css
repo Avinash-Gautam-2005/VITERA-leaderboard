@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #fffde7;
@@ -14,10 +15,12 @@ h2 {
     text-transform: uppercase;
 }
 
+
 /* Navigation Bar */
+
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #fdd835;
     padding: 15px 30px;
@@ -28,6 +31,27 @@ h2 {
     left: 0;
     z-index: 1000;
 }
+.nav-heading{
+    display: flex;
+    flex-grow: 1;
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-left: 10rem;
+    
+}
+.navbar-end-logos {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.navbar-end-logos img {
+    height:65px;
+    margin-right: 2rem;
+    
+}
 
 .navbar-logo {
     display: flex;
@@ -36,7 +60,8 @@ h2 {
 }
 
 .navbar-logo img {
-    height: 40px;
+    height: 60px;
+    border-radius: 10%;
 }
 
 .navbar-title {
@@ -62,7 +87,9 @@ h2 {
     color: #d84315;
 }
 
+
 /* Responsive Navbar */
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -75,18 +102,18 @@ h2 {
         text-align: center;
         padding: 10px 0;
     }
-
     .nav-links.active {
         display: flex;
     }
-
     .menu-toggle {
         display: block;
         cursor: pointer;
     }
 }
 
+
 /* Container Styling */
+
 .container {
     background: #fff3cd;
     padding: 20px;
@@ -97,7 +124,9 @@ h2 {
     margin-top: 80px;
 }
 
+
 /* Navigation Arrows */
+
 .nav-arrow {
     width: 40px;
     height: 40px;
@@ -114,7 +143,9 @@ h2 {
     background: #fbc02d;
 }
 
+
 /* Leaderboard Styling */
+
 .leaderboard {
     width: 80%;
     margin: 20px auto;
@@ -133,7 +164,9 @@ h2 {
     border-bottom: 2px solid #fbc02d;
 }
 
+
 /* Text Styling */
+
 .quote {
     font-size: 18px;
     color: #6d4c41;
@@ -141,7 +174,9 @@ h2 {
     margin: 20px 0;
 }
 
+
 /* Timer Styling */
+
 .timer {
     font-size: 22px;
     color: #d84315;
@@ -149,7 +184,9 @@ h2 {
     margin-top: 10px;
 }
 
+
 /* Interactive Upload Button */
+
 #upload {
     display: none;
 }
